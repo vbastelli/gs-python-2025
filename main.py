@@ -68,12 +68,12 @@ def plot_alocacao(drones, focos, alocacao):
     plt.figure(figsize=(10, 8))
     for i, d in enumerate(drones):
         plt.scatter(d["x"], d["y"], c="blue", label="Drone" if i == 0 else "")
-        plt.text(d["x"] + 0.3, d["y"], f"D{i}", fontsize=10)
+        plt.text(d["x"] + 0.3, d["y"], f"D{i+1}", fontsize=10)
 
     for i, f in enumerate(focos):
-        cor = "red" if f["prioridade"] == 2 else "orange"
+        cor = "red" if f["prioridade"] == 2 else "red"
         plt.scatter(f["x"], f["y"], c=cor, label="Foco" if i == 0 else "")
-        plt.text(f["x"] + 0.3, f["y"], f"F{i}", fontsize=10)
+        plt.text(f["x"] + 0.3, f["y"], f"F{i+1}", fontsize=10)
 
     for drone_id, foco_id, _ in alocacao:
         d = drones[drone_id]
