@@ -1,8 +1,3 @@
-"""
-Sistema Avançado de Combate a Queimadas usando Dynamic Programming
-Implementa múltiplas funcionalidades para coordenação de equipes de combate a incêndios florestais
-"""
-
 import matplotlib.pyplot as plt
 import numpy as np
 from functools import lru_cache
@@ -442,6 +437,24 @@ class SistemaQueimadas:
         else:
             ax.text(0.5, 0.5, "Dados insuficientes", ha='center', va='center')
             ax.set_title("Histórico de Operações")
+    
+    def aleatorizar_drones_disponiveis(self) -> int:
+        """Aleatoriza o status dos drones e retorna o número de drones disponíveis."""
+        possiveis_status = ["disponivel", "em_missao", "manutencao"]
+        
+        # Aleatorizar o status de cada drone
+        for drone in self.drones:
+            drone.status = random.choice(possiveis_status)
+        
+        # Contar drones disponíveis
+        drones_disponiveis = sum(1 for drone in self.drones if drone.status == "disponivel")
+        
+        print(f"🔢 Após aleatorização, {drones_disponiveis} drones estão disponíveis.")
+        print("\n📋 Status de cada drone:")
+        for drone in self.drones:
+            print(f"   • Drone {drone.id}: {drone.status}")
+        
+        return drones_disponiveis
 
 # ====================== FUNÇÃO PRINCIPAL DEMONSTRATIVA ======================
 
@@ -453,6 +466,11 @@ def demonstracao_sistema():
     
     # Inicializar sistema
     sistema = SistemaQueimadas(num_drones=6, area_monitoramento=(30, 30))
+    
+    print("\n0. 🎲 ALEATORIZANDO STATUS DOS DRONES")
+    print("-" * 40)
+    num_disponiveis = sistema.aleatorizar_drones_disponiveis()
+    print(f"✅ Resultado: {num_disponiveis} drones disponíveis.")
     
     print("\n1. 📊 ESTADO INICIAL DO SISTEMA")
     print("-" * 40)
@@ -532,4 +550,5 @@ if __name__ == "__main__":
     print("   • ✅ Sistema completo de gerenciamento")
     print("   • ✅ Visualizações e relatórios detalhados")
     print("   • ✅ Simulação de cenários realistas")
+    print("   • ✅ Aleatorização de drones disponíveis")
     print("=" * 80)
