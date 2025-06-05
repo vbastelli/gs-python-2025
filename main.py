@@ -11,6 +11,9 @@ from collections import defaultdict, deque
 
 # ====================== CLASSES E ESTRUTURAS DE DADOS ======================
 
+#Victório Maia Bastelli | RM: 554723
+#Lorenzo Hayashi Mangini | RM: 554901
+
 @dataclass
 class Drone:
     """Classe para representar um drone de combate a incêndios"""
